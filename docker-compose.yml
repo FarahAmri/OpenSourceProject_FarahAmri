@@ -5,7 +5,7 @@ services:
 
   api:
     build: ./
-    image: crshlab/api_test:0.1
+    image: farahamri/werkstuk_farahamri:0.1
     ports:
       - "80:${PORT}"
     environment:
@@ -19,7 +19,6 @@ services:
   db:
    image: postgres:latest
    ports:
-
     - 5432:5432
    environment:
     - POSTGRES_PASSWORD
