@@ -5,6 +5,19 @@ const cors = require('cors');
 //MIDDLEWARE
 app.use(cors());
 
+//KNEX
+const db = require("knex")({
+    client: "pg",
+    connection: {
+      host: "localhost",
+      user: "admin",
+      password: "admin",
+      database: "plantsDB"
+    }
+  });
+  
+app.set("db", db);
+
 //ROUTES
 app.get('/api/plants', async (req,res) => {
     res.json({"status": "success"});
