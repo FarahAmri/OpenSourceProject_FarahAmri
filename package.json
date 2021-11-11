@@ -1,0 +1,33 @@
+{
+  "name": "opensourceproject_farahamri",
+  "version": "1.0.0",
+  "description": "Open Source Project for Development 5 course.",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FarahAmri/OpenSourceProject_FarahAmri.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FarahAmri/OpenSourceProject_FarahAmri/issues"
+  },
+  "homepage": "https://github.com/FarahAmri/OpenSourceProject_FarahAmri#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1",
+    "jshint": "^2.13.1",
+    "supertest": "^6.1.6"
+  },
+  "jshintConfig": {
+    "esversion": "6"
+  }
+}
