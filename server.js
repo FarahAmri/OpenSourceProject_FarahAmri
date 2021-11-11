@@ -1,7 +1,7 @@
 const express = require ('express');
-const app = express(); 
+const app = express();
 
-app.get('/', async (req,res) => {
+app.get('/api/plants', async (req,res) => {
     res.json({"status": "success"});
 });
 
