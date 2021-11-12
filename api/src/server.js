@@ -6,6 +6,10 @@ const cors = require('cors');
 
 app.use(cors());
 
+//require knex
+
+
+
 /**
  * [GET] /
  * returns success message upon get request
