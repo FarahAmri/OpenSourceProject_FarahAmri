@@ -6,3 +6,8 @@ it('tests if connection to endpoint is successful', async() => {
     expect(response.statusCode).toEqual(200);
     expect(response.body.status).toBe("success");
 });
+
+it('tests if connection to endpoint is successful', async() => {
+    const response = await request(app).get('/api/plants/:plantid');
+    expect(response.statusCode).toEqual(200);
+});

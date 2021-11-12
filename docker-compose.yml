@@ -9,7 +9,7 @@ services:
     ports:
       - "80:${PORT}"
     environment:
-     - PG_CON=postgress://${POSTGRES_USER}:${POSTGRES_PASSWORD}@pg:5432/${POSTGRES_DB}
+     - PG_CON=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@pg:5432/${POSTGRES_DB}
      - PORT
     volumes:
      - ./api/src:/usr/app/src

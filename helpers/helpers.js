@@ -11,7 +11,6 @@ const helpers = {
         .from("planten")
         .then(rows => rows);
     }
-
 };
 
 module.exports = helpers;
