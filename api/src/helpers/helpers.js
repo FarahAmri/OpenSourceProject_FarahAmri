@@ -8,7 +8,7 @@ const helpers = {
     getAllData(db){
         return db
         .select("*")
-        .from("planten")
+        .from("default")
         .then(rows => rows);
     }
 };
