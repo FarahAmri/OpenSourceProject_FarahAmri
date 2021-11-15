@@ -1,7 +1,7 @@
 FROM node:16
-WORKDIR /usr/app
-COPY package*.json ./
+WORKDIR /usr/src/app
+COPY ./api .
+COPY ./api/package*.json .
 RUN npm install
-COPY . .
-EXPOSE 3000
+RUN npm install nodemon -g
 CMD [ "npm", "start" ]

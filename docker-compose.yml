@@ -12,9 +12,13 @@ services:
       - "80:${PORT}"
     environment:
      - PG_CON=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@pg:5432/${POSTGRES_DB}
+     - POSTGRES_HOST
+     - POSTGRES_USER
+     - POSTGRES_PASSWORD
+     - POSTGRES_DB
      - PORT
     volumes:
-     - ./api/src:/usr/app/src
+     - ./api/src:/usr/src/app/src
     depends_on:
      - db
 
