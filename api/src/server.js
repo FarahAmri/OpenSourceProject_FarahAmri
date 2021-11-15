@@ -1,3 +1,4 @@
+//require('dotenv').config({path: "../.env"}); 
 const helpers = require("./helpers/helpers.js");
 
 const express = require ('express');
