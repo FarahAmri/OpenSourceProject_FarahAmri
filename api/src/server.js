@@ -25,12 +25,26 @@ const pg = require('knex')({
 
 /**
  * [GET] /
- * returns success message upon get request
- * @returns {object} with "status" param containing "success"
+ * returns data fron the database plants
+ * @returns {json} with all data from the database
  */
 app.get('/', (req,res) => {
     //res.json({"status": "success"});
     pg.select("*").table("planten").then((data) => {
+        console.log(data);
+        res.json(data);
+    }); 
+});
+
+
+/**
+ * [GET] /
+ * returns data fron the database genus-plants
+ * @returns {json} with all data from the database
+ */
+app.get('/genus', (req,res) => {
+    //res.json({"status": "success"});
+    pg.select("*").table("genus-plants").then((data) => {
         console.log(data);
         res.json(data);
     }); 
