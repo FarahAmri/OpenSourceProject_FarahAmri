@@ -1,13 +1,16 @@
 //require('dotenv').config({path: "../.env"}); 
 const helpers = require("./helpers/helpers.js");
 
-const express = require ('express');
+const express = require ('express'); 
 const app = express();
-const cors = require('cors');
+const cors = require('cors');   
+var bodyParser = require('body-parser');
 
 const { manageTables } = require("./helpers/databaseHelper.js");
 
-app.use(cors());
+app.use(cors());    
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 //require knex
 const pg = require('knex')({
@@ -16,35 +19,72 @@ const pg = require('knex')({
     connection: {
       host : process.env.POSTGRES_HOST ? process.env.POSTGRES_HOST : "localhost",
       port : 5432,
-      user : process.env.POSTGRES_USER,
-      password : process.env.POSTGRES_PASSWORD,
-      database : process.env.POSTGRES_DB
+      user : "username",
+      password : "password",
+      database : "default"
     }
   });
 
 
 /**
  * [GET] /
- * returns success message upon get request
- * @returns {object} with "status" param containing "success"
+ * returns data fron the database plants
+ * @returns {json} with all data from the database
  */
 app.get('/', (req,res) => {
     //res.json({"status": "success"});
     pg.select("*").table("planten").then((data) => {
         console.log(data);
         res.json(data);
-    });
+    }); 
+});
+
+
+/**
+ * [GET] /
+ * returns data fron the database genus-plants
+ * @returns {json} with all data from the database
+ */
+app.get('/genus', (req,res) => {
+    //res.json({"status": "success"});
+    pg.select("*").table("genus-plants").then((data) => {
+        console.log(data);
+        res.json(data);
+    }); 
 });
 
 
 /**
  * [POST] /
- * posts body to database, returns json when succesful 
+ * posts a plant to database, returns json when succesful 
  * @returns {json} "message: success"
  */
 app.post('/api/plants', async(req, res) => {
     try{
-        pg.table("planten").insert({naam: req.body}).then((data) => {
+        pg.table("planten").insert({
+            naam: req.body.naam,
+            planttype: req.body.planttype,
+            sensor: req.body.sensor,
+            waarde: req.body.waarde
+        }).then((data) => { 
+            res.json({ success: true, message: 'success' });
+        });
+    } catch (err){ 
+        console.error(err);
+    }
+});
+
+/**
+ * [POST] /
+ * posts a plant-type to database, returns json when succesful 
+ * @returns {json} "message: success"
+ */
+app.post('/genus', async(req, res) => {
+    try{
+        pg.table("genus-plants").insert({
+            genusId: req.body.genusId,
+            planttype: req.body.planttype
+        }).then((data) => {
             res.json({ success: true, message: 'success' });
         });
     } catch (err){ 
