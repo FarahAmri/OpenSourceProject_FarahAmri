@@ -1,13 +1,13 @@
 //require('dotenv').config({path: "../.env"}); 
 const helpers = require("./helpers/helpers.js");
 
-const express = require ('express');
+const express = require ('express'); 
 const app = express();
-const cors = require('cors');
+const cors = require('cors');   
 
 const { manageTables } = require("./helpers/databaseHelper.js");
 
-app.use(cors());
+app.use(cors());   
 
 //require knex
 const pg = require('knex')({
@@ -16,9 +16,9 @@ const pg = require('knex')({
     connection: {
       host : process.env.POSTGRES_HOST ? process.env.POSTGRES_HOST : "localhost",
       port : 5432,
-      user : process.env.POSTGRES_USER,
-      password : process.env.POSTGRES_PASSWORD,
-      database : process.env.POSTGRES_DB
+      user : "username",
+      password : "password",
+      database : "default"
     }
   });
 
@@ -33,7 +33,7 @@ app.get('/', (req,res) => {
     pg.select("*").table("planten").then((data) => {
         console.log(data);
         res.json(data);
-    });
+    }); 
 });
 
 
