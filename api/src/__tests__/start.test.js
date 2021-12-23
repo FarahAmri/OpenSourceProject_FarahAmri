@@ -27,11 +27,12 @@ describe('POST /api/plants', function() {
     });
   });
 
+
 describe('POST /genus', function() {
     it('responds with json', function(done) {
       request(app)
         .post('/genus')
-        .send({genusId: "12", planttype: "bosplant"})
+        .send({genusId: "14", planttype: "bosplant"})
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
@@ -72,3 +73,34 @@ describe('PUT: update planttype (id:2)', function() {
           });
       });
 });
+
+describe('DELETE: delete plant (id:10)', function() {
+    it('responds with json', function(done) {
+        request(app)
+          .delete('/api/plants/10')
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .end(function(err, res) {
+            if (err) return done(err);
+            return done();
+          });
+      });
+});
+
+describe('DELETE: delete planttype (id:12)', function() {
+    it('responds with json', function(done) {
+        request(app)
+          .delete('/genus/12')
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .end(function(err, res) {
+            if (err) return done(err);
+            return done();
+          });
+      });
+});
+
+
+
