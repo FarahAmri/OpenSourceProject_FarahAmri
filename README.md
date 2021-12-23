@@ -10,19 +10,29 @@ OR locally use the command "npm start"
 
 # Endpoints 
 ## GET 
-### "/" List all plants
+
+```
+"/" 
+```
+Lists all plants
 returns a list of all plants in de database
 
 status 200 = success
 
-### "/genus" Lists all plant types
+```
+"/genus" 
+```
+Lists all plant types
 returns a list of all the planttypes in the database
 
 status 200 = success
 
 ## POST
 
-### "/api/plants" post a new plant
+```
+"/api/plants" 
+```
+post a new plant
 post a new plant to the database
 
 Request body schema: application/json
@@ -34,7 +44,10 @@ waarde: integer
 
 status 200 = success
 
-### "/genus" post a new planttype
+```
+"/genus" 
+```
+post a new planttype
 post a new planttype to the database
 
 Request body schema: application/json
@@ -45,7 +58,10 @@ planttype: string
 status 200 = success
 ## PUT
 
-### "/api/plants/:plantId" update a plant
+```
+"/api/plants/:plantId" 
+```
+update a plant
 Updates a plant based on id
 
 ### Params structure
@@ -53,7 +69,10 @@ plantId: integer
 
 status 200 = success
 
-### "/genus/:genusId" update a planttype
+```
+"/genus/:genusId"
+```
+update a planttype
 Updates a planttype based on id
 
 ### Params structure
@@ -63,7 +82,10 @@ status 200 = success
 
 ## DELETE
 
-### "/api/plants/:plantId" delete a plant
+```
+"/api/plants/:plantId" 
+```
+delete a plant
 Deletes a plant based on id
 
 ### Params structure
@@ -71,7 +93,10 @@ plantId: integer
 
 status 200 = success
 
-### "/genus/:genusId" delete a planttype
+```
+"/genus/:genusId" 
+```
+delete a planttype
 Deletes a planttype based on id
 
 ### Params structure
