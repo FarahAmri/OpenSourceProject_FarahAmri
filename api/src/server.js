@@ -112,13 +112,31 @@ app.delete('/api/plants/:plantId', async(req, res) => {
 /**
  * [UPDATE] /
  * updates 1 plant based on id 
- * @returns {string} "changed 1 plant"
+ * @returns {json} "changed 1 plant"
  */
 app.put('/api/plants/:plantId', async(req, res) => {
     let  id = req.params.plantId;
     try{
         pg.table("planten").update({naam: "testplant"}).where({
             id:id
+        }).then((data) => {
+            res.json({ success: true, message: 'plant succesfully updated' });
+        });
+    } catch (err){ 
+        console.error(err);
+    }
+});
+
+/**
+ * [UPDATE] /
+ * updates planttype based on id 
+ * @returns {json} "changed 1 plant"
+ */
+app.put('/genus/:genusId', async(req, res) => {
+    let  genusId = req.params.genusId;
+    try{
+        pg.table("genus-plants").update({planttype: "zeeplant"}).where({
+            genusId:genusId
         }).then((data) => {
             res.json({ success: true, message: 'plant succesfully updated' });
         });
