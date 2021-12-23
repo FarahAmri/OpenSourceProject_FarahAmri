@@ -13,7 +13,7 @@ async function manageTables(pg){
                     t.string('naam', 100);
                     t.integer('planttype', 1).unsigned().references('genusId').inTable('genus-plants');
                     t.string('sensor', 100);
-                    t.integer('sensor-value');
+                    t.integer('waarde');
                 })
                 .then(() => {
                     console.log("table user exists");

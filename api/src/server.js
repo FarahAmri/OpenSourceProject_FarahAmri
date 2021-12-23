@@ -7,7 +7,7 @@ const cors = require('cors');
 
 const { manageTables } = require("./helpers/databaseHelper.js");
 
-app.use(cors());   
+app.use(cors());    
 
 //require knex
 const pg = require('knex')({
@@ -53,12 +53,35 @@ app.get('/genus', (req,res) => {
 
 /**
  * [POST] /
- * posts body to database, returns json when succesful 
+ * posts a plant to database, returns json when succesful 
  * @returns {json} "message: success"
  */
 app.post('/api/plants', async(req, res) => {
     try{
-        pg.table("planten").insert({naam: req.body}).then((data) => {
+        pg.table("planten").insert({
+            naam: "snakeplant",
+            planttype: 1,
+            sensor: "dht",
+            waarde: 300
+        }).then((data) => {
+            res.json({ success: true, message: 'success' });
+        });
+    } catch (err){ 
+        console.error(err);
+    }
+});
+
+/**
+ * [POST] /
+ * posts a plant-type to database, returns json when succesful 
+ * @returns {json} "message: success"
+ */
+app.post('/genus', async(req, res) => {
+    try{
+        pg.table("genus-plants").insert({
+            genusId: 6,
+            planttype: "buitenplant"
+        }).then((data) => {
             res.json({ success: true, message: 'success' });
         });
     } catch (err){ 
