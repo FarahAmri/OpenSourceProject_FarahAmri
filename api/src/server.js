@@ -1,4 +1,3 @@
-//require('dotenv').config({path: "../.env"}); 
 const helpers = require("./helpers/helpers.js");
 
 const express = require ('express'); 
@@ -95,7 +94,7 @@ app.post('/genus', async(req, res) => {
 /**
  * [DELETE] /
  * deletes 1 plant based on id 
- * @returns {string} "deletes 1 plant based on id"
+ * @returns {json} "plant succesfully deleted"
  */
 app.delete('/api/plants/:plantId', async(req, res) => {
     let id = req.params.plantId; 
@@ -110,9 +109,26 @@ app.delete('/api/plants/:plantId', async(req, res) => {
     }});
 
 /**
+ * [DELETE] /
+ * deletes 1 plant based on id 
+ * @returns {json} "plant succesfully deleted"
+ */
+ app.delete('/genus/:genusId', async(req, res) => {
+    let genusId = req.params.genusId; 
+    try{
+        pg.table("genus-plants").del().where({
+            genusId:genusId
+        }).then((data) => {
+            res.json({ success: true, message: 'plant succesfully deleted' });
+        });
+    } catch (err){ 
+        console.error(err);
+    }});
+
+/**
  * [UPDATE] /
  * updates 1 plant based on id 
- * @returns {json} "changed 1 plant"
+ * @returns {json} "plant succesfully updated"
  */
 app.put('/api/plants/:plantId', async(req, res) => {
     let  id = req.params.plantId;
@@ -130,7 +146,7 @@ app.put('/api/plants/:plantId', async(req, res) => {
 /**
  * [UPDATE] /
  * updates planttype based on id 
- * @returns {json} "changed 1 plant"
+ * @returns {json} "plant succesfully updated"
  */
 app.put('/genus/:genusId', async(req, res) => {
     let  genusId = req.params.genusId;
