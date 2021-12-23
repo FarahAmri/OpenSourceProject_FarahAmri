@@ -4,10 +4,13 @@ const helpers = require("./helpers/helpers.js");
 const express = require ('express'); 
 const app = express();
 const cors = require('cors');   
+var bodyParser = require('body-parser');
 
 const { manageTables } = require("./helpers/databaseHelper.js");
 
 app.use(cors());    
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 //require knex
 const pg = require('knex')({
@@ -59,11 +62,11 @@ app.get('/genus', (req,res) => {
 app.post('/api/plants', async(req, res) => {
     try{
         pg.table("planten").insert({
-            naam: "snakeplant",
-            planttype: 1,
-            sensor: "dht",
-            waarde: 300
-        }).then((data) => {
+            naam: req.body.naam,
+            planttype: req.body.planttype,
+            sensor: req.body.sensor,
+            waarde: req.body.waarde
+        }).then((data) => { 
             res.json({ success: true, message: 'success' });
         });
     } catch (err){ 
@@ -79,8 +82,8 @@ app.post('/api/plants', async(req, res) => {
 app.post('/genus', async(req, res) => {
     try{
         pg.table("genus-plants").insert({
-            genusId: 6,
-            planttype: "buitenplant"
+            genusId: req.body.genusId,
+            planttype: req.body.planttype
         }).then((data) => {
             res.json({ success: true, message: 'success' });
         });
